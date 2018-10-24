@@ -1,13 +1,14 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import PeopleListItem from './PeopleListItem';
 
 const PeopleList = props => {
 
-  const textElements = props.peoples.map((people, i) => {
+  const { peoples, onPress } = props;
+
+  const textElements = peoples.map((people, i) => {
     return (
-      <View key={i} style={style.line}>
-        <Text style={style.lineText}>{people.name.first}</Text>
-      </View>
+      <PeopleListItem key={i} people={people} onPress={onPress} />
     );
   })
 
@@ -22,17 +23,6 @@ const PeopleList = props => {
 const style = StyleSheet.create({
   container: {
     backgroundColor: '#e2f9FF',
-  },
-  line:{
-    height: 40,
-    borderBottomWidth: 1,
-    borderBottomColor: "#bbb",
-    alignItems: 'center',
-    flexDirection: 'row'
-  },
-  lineText: {
-    fontSize: 20,
-    paddingLeft: 15,
   }
 });
 
