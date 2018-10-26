@@ -11,6 +11,7 @@ export default class PeoplePage extends React.Component {
     this.state = {
       peoples: [],
       loading: false,
+      error: false
     }
   }
 
@@ -26,6 +27,12 @@ export default class PeoplePage extends React.Component {
              peoples: results,
              loading: false,
            })
+         })
+         .catch(error => {
+           this.setState({
+             error: true,
+             loading: false
+           })
          });
   }
 
@@ -34,6 +41,8 @@ export default class PeoplePage extends React.Component {
       <View style={styles.container}>
       {
         this.state.loading ? <ActivityIndicator size="large" color="#6ca2f7" />
+        : this.state.error
+        ? <Text>Deu erro na conexão =(</Text>
         : <PeopleList onPress={pageParams => {
           this.props.navigation.navigate('PeopleDetail', pageParams)
         }} peoples={this.state.peoples} />
