@@ -19,7 +19,7 @@ export default class PeoplePage extends React.Component {
     this.setState({
       loading: true,
     });
-    Axios.get('https://randomuser.me/api/?nat=br&results=150')
+    Axios.get('https://randomuser.me/api/?nat=br&results=15')
          .then(response => {
            const {results} = response.data;
            // const peoples = results.map(people => people.name.first);
